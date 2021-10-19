@@ -1,0 +1,84 @@
+
+<mat-toolbar class="navbar__container mat-elevation-z8">
+   
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="onToggle()">
+        <mat-icon *ngIf="!sidenav.opened">
+            menu
+        </mat-icon>
+        <mat-icon *ngIf="sidenav.opened">
+            close
+        </mat-icon>
+    </button>
+
+    <div class="vidly">
+      <button mat-button (click)="onShowMovies()">Movies</button>
+      <button mat-button (click)="onShowTVShows()">TV Shows</button>
+      <button mat-button (click)="onShowTrending()">Trending</button>
+    </div>
+  
+    <div class="tools">
+      <div class="details">
+        <img  class="avatar__header mat-elevation-z8" [src]="userImage" />
+        <span class="name__header">John Smith</span>
+      </div>
+      
+      <button mat-button class="exit" (click)="onLogout()">
+        <mat-icon>exit_to_app</mat-icon>
+        Logout
+      </button>
+    </div>
+
+  </mat-toolbar>
+   
+  
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+        <img class="avatar mat-elevation-z8" src={{userImage}} />
+        <h4 class="name">John Smith</h4>
+
+        <mat-divider *ngIf="!isSideBarOpen"></mat-divider>
+
+        
+        <button mat-button class="menu-button">
+          <mat-icon>person</mat-icon>
+          <span>Profile</span>
+        </button>
+
+        <button mat-button class="menu-button">
+          <mat-icon><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path d="M6 8c1.11 0 2-.9 2-2s-.89-2-2-2c-1.1 0-2 .9-2 2s.9 2 2 2zm6 0c1.11 0 2-.9 2-2s-.89-2-2-2c-1.11 0-2 .9-2 2s.9 2 2 2zM6 9.2c-1.67 0-5 .83-5 2.5V13h10v-1.3c0-1.67-3.33-2.5-5-2.5zm6 0c-.25 0-.54.02-.84.06.79.6 1.34 1.4 1.34 2.44V13H17v-1.3c0-1.67-3.33-2.5-5-2.5z"/></svg></mat-icon>
+          <span>Users</span>
+        </button>
+
+        <mat-divider></mat-divider>
+
+        
+          <button  class="vidly-column" mat-button (click)="onShowMovies()">Movies</button>
+          <button class="vidly-column" mat-button (click)="onShowTVShows()">TV Shows</button>
+          <button  class="vidly-column" mat-button (click)="onShowTrending()">Trending</button>
+       
+
+      <mat-divider *ngIf="isSideBarOpen"></mat-divider>
+
+          <button mat-button class="menu-button" (click)="onNavigateToAddMovie()">
+            <mat-icon><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg></mat-icon>
+            <span>Add Movie</span>
+          </button>
+
+          <button mat-button class="menu-button" (click)="onNavigateToAddTVShow()">
+            <mat-icon><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg></mat-icon>
+            <span>Add TVShow</span>
+          </button>
+       
+          <button mat-button class="menu-button" (click)="onNavigateToAddGenre()">
+              <mat-icon>add</mat-icon>
+              <span>Add Genre</span>
+          </button>
+  
+      </mat-sidenav>
+        <mat-sidenav-content>
+            <div class="content mat-elevation-z8">
+              <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+  
