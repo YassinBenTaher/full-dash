@@ -2,11 +2,11 @@ const path = require("path");
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors')
-const genres = require('./routes/genres');
-const movies = require('./routes/movies');
-const tvShows = require('./routes/tvShows');
-const auth = require('./routes/auth');
-const tvEpisodes = require('./routes/tvEpisodes');
+const genres = require('./backend/routes/genres');
+const movies = require('./backend/routes/movies');
+const tvShows = require('./backend/routes/tvShows');
+const auth = require('./backend/routes/auth');
+const tvEpisodes = require('./backend/routes/tvEpisodes');
 const dotenv = require('dotenv');
 dotenv.config();
 
