@@ -17,7 +17,7 @@ export class AuthService {
       email: email,
       password: password
     }
-    return this.http.post<any>('http://localhost:3000/api/auth/login', user, {
+    return this.http.post<any>('http://localhost:8080/api/auth/login', user, {
        observe: 'response'
     }).pipe(
       shareReplay(),
@@ -32,7 +32,7 @@ export class AuthService {
   }
 
   logout() {
-    this.http.delete('http://localhost:3000/api/auth/logout/' +  this.getDecryptToken(this.getUserId()) , {
+    this.http.delete('http://localhost:8080/api/auth/logout/' +  this.getDecryptToken(this.getUserId()) , {
       headers: {
         'x-refresh-token': JSON.parse(this.getDecryptToken(this.getRefreshToken())) ,
       },
@@ -84,7 +84,7 @@ export class AuthService {
   }
 
   getNewAccessToken() {
-    return this.http.post('http://localhost:3000/api/auth/token', JSON.parse(this.getDecryptToken(this.getUserId())),{
+    return this.http.post('http://localhost:8080/api/auth/token', JSON.parse(this.getDecryptToken(this.getUserId())),{
       headers: {
         'x-refresh-token': JSON.parse(this.getDecryptToken(this.getRefreshToken())) ,
       },

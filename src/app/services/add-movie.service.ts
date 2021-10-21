@@ -35,7 +35,7 @@ export class AddMovieService {
 
     return this.http
       .post<Movie>(
-        "http://localhost:3000/api/movies",
+        "http://localhost:8080/api/movies",
         postData
       )
      
@@ -46,7 +46,7 @@ export class AddMovieService {
 
     return this.http
       .get<Movie[]>(
-        "http://localhost:3000/api/movies"
+        "http://localhost:8080/api/movies"
       )
       .pipe(map((responseData) => {
         let movies: Movie[] = []
@@ -102,7 +102,7 @@ export class AddMovieService {
 
     return this.http
       .get<Movie[]>(
-        "http://localhost:3000/api/movies/trending"
+        "http://localhost:8080/api/movies/trending"
       )
       .pipe(map((responseData) => {
         let movies: Movie[] = []
@@ -238,17 +238,17 @@ export class AddMovieService {
     postData.append("updateAt", movie.updateAt);
     postData.append("image", movie.moviePoster, movie.movieName);
 
-     return this.http.put<Movie>( "http://localhost:3000/api/movies/" + movieId, postData);
+     return this.http.put<Movie>( "http://localhost:8080/api/movies/" + movieId, postData);
   }
 
   updateMovieSamePoster(movieId: string, movie: Movie){
-    return this.http.put<Movie>( "http://localhost:3000/api/movies/samePoster/" + movieId, movie);
+    return this.http.put<Movie>( "http://localhost:8080/api/movies/samePoster/" + movieId, movie);
   }
 
   getMoviesById(movieId: string) {
     return this.http
       .get<Movie>(
-        "http://localhost:3000/api/movies/" + movieId
+        "http://localhost:8080/api/movies/" + movieId
       )
       .pipe(map((responseData) => {
           const movie: Movie = {
@@ -274,7 +274,7 @@ export class AddMovieService {
   }
 
   onRemoveMovie(movieId: string){
-    this.http.delete<Movie>( "http://localhost:3000/api/movies/" + movieId)
+    this.http.delete<Movie>( "http://localhost:8080/api/movies/" + movieId)
     .pipe(switchMap((movie: Movie) => {
       return this.getMovies();
     })).subscribe((movies: Movie[]) => {

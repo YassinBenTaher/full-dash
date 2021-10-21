@@ -21,7 +21,7 @@ export class TvEpisodeService {
 
    return this.http
       .post<TVEpisode>(
-        "http://localhost:3000/api/tvEpisodes",
+        "http://localhost:8080/api/tvEpisodes",
          tvEpisode
       );
   }
@@ -30,7 +30,7 @@ export class TvEpisodeService {
 
    return this.http
       .post<TVEpisode>(
-        "http://localhost:3000/api/tvEpisodes/add",
+        "http://localhost:8080/api/tvEpisodes/add",
          tvEpisode
       );
   }
@@ -40,7 +40,7 @@ export class TvEpisodeService {
 
     return this.http
       .get<TVEpisode[]>(
-        "http://localhost:3000/api/tvEpisodes"
+        "http://localhost:8080/api/tvEpisodes"
       )
       .pipe(map((responseData) => {
         let tvEpisodes: TVEpisode[] = []
@@ -97,21 +97,21 @@ export class TvEpisodeService {
   }
 /***/ 
   getTVEpisodesById(tvShowId: string) {
-    return this.http.get<TVEpisode[]>("http://localhost:3000/api/tvEpisodes/" + tvShowId);
+    return this.http.get<TVEpisode[]>("http://localhost:8080/api/tvEpisodes/" + tvShowId);
   }
 
   /***/ 
   getTVEpisodeById(tvEpisodeId: string) {
-    return this.http.get<TVEpisode>("http://localhost:3000/api/tvEpisodes/toUpdate/" + tvEpisodeId);
+    return this.http.get<TVEpisode>("http://localhost:8080/api/tvEpisodes/toUpdate/" + tvEpisodeId);
   }
 
 
   updateTVEpisode(tvEpisodeId: string, tvEpisode: TVEpisode){
-      return this.http.put<TVEpisode>( "http://localhost:3000/api/tvEpisodes/" + tvEpisodeId, tvEpisode);
+      return this.http.put<TVEpisode>( "http://localhost:8080/api/tvEpisodes/" + tvEpisodeId, tvEpisode);
   }
 
   onRemoveTVEpisode(tvEpisodeId: string, tvShowId: string) {
-    this.http.delete<TVEpisode>( "http://localhost:3000/api/tvEpisodes/" + tvEpisodeId + "/" + tvShowId)
+    this.http.delete<TVEpisode>( "http://localhost:8080/api/tvEpisodes/" + tvEpisodeId + "/" + tvShowId)
     .pipe(switchMap((tvEpisode: TVEpisode) => {
       return this.getTVEpisodesById(tvShowId);
     })).subscribe((tvEpisodes: TVEpisode[]) => {

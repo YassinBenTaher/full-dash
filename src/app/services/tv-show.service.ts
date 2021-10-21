@@ -35,7 +35,7 @@ export class TvShowService {
 
    return this.http
       .post<TVShow>(
-        "http://localhost:3000/api/tvShows",
+        "http://localhost:8080/api/tvShows",
         postData
       ).pipe(map((responseData) => {
         let tvShow: TVShow = {
@@ -61,7 +61,7 @@ export class TvShowService {
 
     return this.http
       .get<TVShow[]>(
-        "http://localhost:3000/api/tvShows"
+        "http://localhost:8080/api/tvShows"
       )
       .pipe(map((responseData) => {
         let tvShows: TVShow[] = []
@@ -126,7 +126,7 @@ export class TvShowService {
   }
 
   onRemoveTVShow(tvShowId: string) {
-    this.http.delete<TVShow>( "http://localhost:3000/api/tvShows/" + tvShowId)
+    this.http.delete<TVShow>( "http://localhost:8080/api/tvShows/" + tvShowId)
     .pipe(switchMap((tvShow: TVShow) => {
       return this.getTVShows();
     })).subscribe((tvShows: TVShow[]) => {
@@ -137,7 +137,7 @@ export class TvShowService {
   getTVShowById(tvShowId: string): any {
     return this.http
     .get<TVShow>(
-      "http://localhost:3000/api/tvShows/" + tvShowId
+      "http://localhost:8080/api/tvShows/" + tvShowId
     )
     .pipe(map((responseData) => {
         const tvShow: TVShow = {
@@ -162,7 +162,7 @@ export class TvShowService {
   }
 
   updateTVShowSamePoster(tvShowId: string, tvShow: TVShow) {
-    return this.http.put<TVShow>( "http://localhost:3000/api/tvShows/samePoster/" + tvShowId, tvShow);
+    return this.http.put<TVShow>( "http://localhost:8080/api/tvShows/samePoster/" + tvShowId, tvShow);
   }
 
   updateTVShow(tvShowId: string, tvShow: TVShow) {
@@ -181,7 +181,7 @@ export class TvShowService {
     postData.append("createdAt", tvShow.createdAt);
     postData.append("updatedAt", tvShow.updatedAt);
 
-     return this.http.put<TVShow>( "http://localhost:3000/api/tvShows/" + tvShowId, postData);
+     return this.http.put<TVShow>( "http://localhost:8080/api/tvShows/" + tvShowId, postData);
   }
 
   onNavigateToAddEpisode(tvShowId: string, mode: string){
